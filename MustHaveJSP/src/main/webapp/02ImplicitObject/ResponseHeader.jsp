@@ -12,7 +12,7 @@ response.addDateHeader("myBirthday", add_date);
 response.addIntHeader("myNumber", add_int);
 response.addIntHeader("myNumber", 1004);
 response.addHeader("myName", add_str);
-response.addHeader("myName", "안중근");
+response.setHeader("myName", "안중근");
 %>
 <!DOCTYPE html>
 <html>
