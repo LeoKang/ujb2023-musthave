@@ -36,7 +36,7 @@ response.addHeader("myName", "안중근");
 	Collection<String> myNumber = response.getHeaders("myNumber");
 	for(String myNum : myNumber) {
 		%>
-	<li>Number : <%= myNum %></li>
+	<li>myNumber : <%= myNum %></li>
 	<%
 	}
 	%>
