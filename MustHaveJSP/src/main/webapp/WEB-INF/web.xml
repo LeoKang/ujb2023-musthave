@@ -46,4 +46,8 @@
   	<location>/02ImplicitObject/Exception.jsp</location>
   </error-page>
    -->
+   
+   <session-config>
+   	<session-timeout>7</session-timeout>
+   </session-config>
 </web-app>
