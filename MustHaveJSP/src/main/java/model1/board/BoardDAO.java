@@ -18,7 +18,8 @@ public class BoardDAO extends JDBConnect {
 
 		String query = "SELECT COUNT(*) FROM board";
 		if (map.get("searchWord") != null) {
-			query += " WHERE " + map.get("searchField") + " " + " LIKE '%" + map.get("searchWord") + "%'";
+			query += " WHERE " + map.get("searchField") + " "
+					+ " LIKE '%" + map.get("searchWord") + "%'";
 		}
 
 		try {
@@ -39,7 +40,8 @@ public class BoardDAO extends JDBConnect {
 
 		String query = "SELECT * FROM board";
 		if (map.get("searchWord") != null) {
-			query += " WHERE " + map.get("searchField") + " " + " LIKE '%" + map.get("searchWord") + "%' ";
+			query += " WHERE " + map.get("searchField") + " "
+				+ " LIKE '%" + map.get("searchWord") + "%' ";
 		}
 		query += " ORDER BY num DESC";
 
@@ -65,5 +67,27 @@ public class BoardDAO extends JDBConnect {
 		}
 
 		return bbs;
+	}
+
+	public int insertWrite(BoardDTO dto) {
+		int result = 0;
+
+		try {
+			String query = "INSERT INTO board ("
+					+ "num, title, content, id, visitcount) "
+					+ "VALUES("
+					+ "seq_board_num.NEXTVAL, ?, ?, ?, 0)";
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getTitle());
+			psmt.setString(2, dto.getContent());
+			psmt.setString(3, dto.getId());
+
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("게시물 입력 중 예외 발생");
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 }
