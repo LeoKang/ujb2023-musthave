@@ -90,4 +90,26 @@ public class BoardDAO extends JDBConnect {
 
 		return result;
 	}
+	
+	public int updateEdit(BoardDTO dto) {
+		int result = 0;
+		
+		try {
+			String query = "UPDATE board SET "
+					+ " title=?, content=? "
+					+ " WHERE num=?";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getTitle());
+			psmt.setString(2, dto.getContent());
+			psmt.setString(3, dto.getNum());
+			
+			result = psmt.executeUpdate();
+		}catch(Exception e) {
+			System.out.println("게시물 수정 중 예외 발생");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }
